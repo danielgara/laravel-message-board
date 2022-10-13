@@ -149,4 +149,11 @@ class User extends Authenticatable
     {
         $this->messages = $messages;
     }
+
+    /* Other methods */
+
+    public function isCurrentUser(int $id): bool
+    {
+        return $this->id == $id ? true : false;
+    }
 }

@@ -46,5 +46,33 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+
+        // Modify default Laravel exception rendering
+        $this->renderable(function (NotFoundHttpException | MethodNotAllowedHttpException | ThrottleRequestsException $e, $request) {
+            if ($request->is('api/*')) {
+                $status = 404;
+
+                if ($e instanceof ThrottleRequestsException) {
+                    $status = 429;
+                } elseif ($e instanceof MethodNotAllowedHttpException) {
+                    $status = 405;
+                }
+
+                $message = $e->getMessage();
+
+                if (empty($message)) {
+                    $message = 'Not found';
+                }
+
+                return response()->json([
+                    'message' => $message,
+                ], $status);
+            }
+        });
+    }
+
+    protected function shouldReturnJson($request, Throwable $e)
+    {
+        return true;
     }
 }
