@@ -3,16 +3,17 @@
 namespace App\DTOs;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserDTO
 {
-    public static function fromRequest(string $full_name, string $email, string $password, string $bio): User
+    public static function fromRequest(Request $request): User
     {
         $user = new User();
-        $user->setName($full_name);
-        $user->setEmail($email);
-        $user->setPassword($password);
-        $user->setBio($bio);
+        $user->setName($request->full_name);
+        $user->setEmail($request->email);
+        $user->setPassword($request->password);
+        $user->setBio($request->bio);
 
         return $user;
     }

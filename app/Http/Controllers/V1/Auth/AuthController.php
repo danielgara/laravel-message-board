@@ -24,12 +24,7 @@ class AuthController extends BaseController
     public function create(CreateUserRequest $request): JsonResponse
     {
         try {
-            $userObject = UserDTO::fromRequest(
-                $request->full_name,
-                $request->email,
-                $request->password,
-                $request->bio,
-            );
+            $userObject = UserDTO::fromRequest($request);
             $user = $this->userRepository->save($userObject);
 
             $responseData = [];
