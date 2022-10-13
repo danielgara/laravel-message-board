@@ -35,5 +35,6 @@ Route::group(['prefix' => 'v1/threads', 'middleware' => 'auth:sanctum'], functio
 
 /* UserThreadMessage routes with authentication */
 Route::group(['prefix' => 'v1/user', 'middleware' => 'auth:sanctum'], function () {
-    Route::post('/{userId}/threads/{threadId}/messages', [UserThreadMessageController::class, 'create'])->where(['userId' => '[0-9]+', 'threadId' => '[0-9]+'])->name('api.v1.userThreadMessage.create');
+    Route::get('/{userId}/threads', [UserThreadMessageController::class, 'getUserThreads'])->where('userId', '[0-9]+')->name('api.v1.userThreadMessage.getUserThreads');
+    Route::post('/{userId}/threads/{threadId}/messages', [UserThreadMessageController::class, 'createMessage'])->where(['userId' => '[0-9]+', 'threadId' => '[0-9]+'])->name('api.v1.userThreadMessage.createMessage');
 });
