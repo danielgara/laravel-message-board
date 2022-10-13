@@ -11,4 +11,6 @@ interface MessageRepositoryInterface
     public function getByThreadId(int $threadId);
 
     public function save(Message $message);
+
+    public function getMessagesByUserIdAndThreadIdAndSearchTerm(int $userId, int $threadId, string $searchTerm);
 }

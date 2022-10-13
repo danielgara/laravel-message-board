@@ -24,4 +24,12 @@ class MessageRepository implements MessageRepositoryInterface
     {
         return Message::find($messageId);
     }
+
+    public function getMessagesByUserIdAndThreadIdAndSearchTerm(int $userId, int $threadId, string $searchTerm): ?Collection
+    {
+        return Message::where('user_id', '=', $userId)
+                    ->where('thread_id', '=', $threadId)
+                    ->where('body', 'LIKE', '%'.$searchTerm.'%')
+                    ->get();
+    }
 }
