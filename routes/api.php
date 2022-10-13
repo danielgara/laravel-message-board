@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\V1\Auth\AuthController;
+use App\Http\Controllers\V1\Threads\ThreadController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +24,9 @@ Route::group(['prefix' => 'v1/auth'], function () {
 /* Auth routes with authentication */
 Route::group(['prefix' => 'v1/auth', 'middleware' => 'auth:sanctum'], function () {
     Route::get('/{userId}', [AuthController::class, 'getUser'])->where('userId', '[0-9]+')->name('api.v1.auth.getUser');
+});
+
+/* Thread routes with authentication */
+Route::group(['prefix' => 'v1/threads', 'middleware' => 'auth:sanctum'], function () {
+    Route::post('/', [ThreadController::class, 'create'])->name('api.v1.threads.create');
 });
