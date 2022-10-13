@@ -128,7 +128,7 @@ class User extends Authenticatable
         return $this->attributes['created_at'];
     }
 
-    public function getUpdatedAt(): string
+    public function getUpdatedAt(): ?string
     {
         return $this->attributes['updated_at'];
     }

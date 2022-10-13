@@ -41,14 +41,14 @@ class Message extends Model
         $this->attributes['id'] = $id;
     }
 
-    public function getTitle(): string
+    public function getBody(): string
     {
-        return $this->attributes['title'];
+        return $this->attributes['body'];
     }
 
-    public function setTitle(string $title): void
+    public function setBody(string $body): void
     {
-        $this->attributes['title'] = $title;
+        $this->attributes['body'] = $body;
     }
 
     public function getUserId(): int
@@ -76,7 +76,7 @@ class Message extends Model
         return $this->attributes['created_at'];
     }
 
-    public function getUpdatedAt(): string
+    public function getUpdatedAt(): ?string
     {
         return $this->attributes['updated_at'];
     }

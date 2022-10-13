@@ -13,4 +13,9 @@ class ThreadRepository implements ThreadRepositoryInterface
 
         return $thread;
     }
+
+    public function getById(int $threadId): ?Thread
+    {
+        return Thread::find($threadId);
+    }
 }
