@@ -18,6 +18,7 @@ class MessageResource extends JsonResource
             'id' => $this->getId(),
             'body' => $this->getBody(),
             'user_id' => $this->getUserId(),
+            'thread_id' => $this->getThreadId(),
             'created_at' => $this->getCreatedAt(),
             'updated_at' => $this->getUpdatedAt(),
         ];

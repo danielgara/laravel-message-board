@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\V1\Auth\AuthController;
 use App\Http\Controllers\V1\Threads\ThreadController;
+use App\Http\Controllers\V1\Threads\UserThreadMessageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,4 +31,9 @@ Route::group(['prefix' => 'v1/auth', 'middleware' => 'auth:sanctum'], function (
 Route::group(['prefix' => 'v1/threads', 'middleware' => 'auth:sanctum'], function () {
     Route::post('/', [ThreadController::class, 'create'])->name('api.v1.threads.create');
     Route::get('/{threadId}/messages', [ThreadController::class, 'getMessages'])->where('threadId', '[0-9]+')->name('api.v1.threads.getMessages');
+});
+
+/* UserThreadMessage routes with authentication */
+Route::group(['prefix' => 'v1/user', 'middleware' => 'auth:sanctum'], function () {
+    Route::post('/{userId}/threads/{threadId}/messages', [UserThreadMessageController::class, 'create'])->where(['userId' => '[0-9]+', 'threadId' => '[0-9]+'])->name('api.v1.userThreadMessage.create');
 });
