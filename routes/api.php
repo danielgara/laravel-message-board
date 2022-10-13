@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\V1\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+/* Auth routes */
+Route::group(['prefix' => 'v1/auth'], function () {
+    Route::post('/create', [AuthController::class, 'create'])->name('api.v1.auth.create');
 });

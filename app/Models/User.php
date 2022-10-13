@@ -113,11 +113,6 @@ class User extends Authenticatable
         return $this->attributes['remember_token'];
     }
 
-    public function setRememberToken(string $rememberToken): void
-    {
-        $this->attributes['remember_token'] = $rememberToken;
-    }
-
     public function getBio(): string
     {
         return $this->attributes['bio'];
@@ -133,19 +128,9 @@ class User extends Authenticatable
         return $this->attributes['created_at'];
     }
 
-    public function setCreatedAt(string $createdAt): void
-    {
-        $this->attributes['created_at'] = $createdAt;
-    }
-
     public function getUpdatedAt(): string
     {
         return $this->attributes['updated_at'];
-    }
-
-    public function setUpdatedAt(string $updatedAt): void
-    {
-        $this->attributes['updated_at'] = $updatedAt;
     }
 
     /* Relationships */
