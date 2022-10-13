@@ -19,4 +19,9 @@ class MessageRepository implements MessageRepositoryInterface
     {
         return Message::where('thread_id', '=', $threadId)->orderBy('created_at', 'desc')->get();
     }
+
+    public function getById(int $messageId): ?Message
+    {
+        return Message::find($messageId);
+    }
 }

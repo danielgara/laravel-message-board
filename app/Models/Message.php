@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
@@ -76,7 +77,7 @@ class Message extends Model
         return $this->attributes['created_at'];
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): string
     {
         return $this->attributes['updated_at'];
     }
@@ -111,5 +112,14 @@ class Message extends Model
     public function setUser(User $user): void
     {
         $this->user = $user;
+    }
+
+    /* Other methods */
+
+    public function isCreatedAtFewerThan5Minutes(): bool
+    {
+        $currentTimeMinusFiveMinutes = Carbon::now()->subMinutes(5)->toDateTimeString();
+
+        return $this->getCreatedAt() >= $currentTimeMinusFiveMinutes ? true : false;
     }
 }
